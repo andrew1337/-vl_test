@@ -37,14 +37,10 @@ def is_synonyms(a: str, b: str, list_of_sets) -> bool:
 def check_synonyms(
     dictionary: "list[list[str]]", queries: "list[list[str]]"
 ) -> "list[bool]":
-    print(dictionary)
-    print(queries)
     result = []
     mapping = build_synonyms_mapping(dictionary)
     for i, j in queries:
         result.append(is_synonyms(i, j, mapping))
-    print(result)
-    raise
     return result
 
 
@@ -80,22 +76,3 @@ if __name__ == "__main__":
     main("input/example_big.in.json", "output/my_big.out")
     assert files_are_same("test_output/example_big.out", "output/my_big.out")
     main("input/input.json", "output/output.out")
-
-
-dictionary = [
-    ["big", "large"],
-    ["large", "huge"],
-    ["great", "huge"],
-    ["small", "little"],
-    ["apple", "banana"],
-]
-test_case = [
-    ["same", "same"],
-    ["big", "huge"],
-    ["huge", "big"],
-    ["apple", "peach"],
-    ["big", "tall"],
-    ["peach", "PEACH"],
-]
-
-expected_result = [True, True, True, False, False, True]
